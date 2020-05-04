@@ -21,23 +21,28 @@
         const balloon = document.querySelector('h1');
         console.log(balloon.style.fontSize);
         let size = 50
-        document.addEventListener('keydown', e => {
+
+        function changeSize(e) {
             e.preventDefault();
+            console.log('still listening');
             if (e.key == 'ArrowDown') {
-                if (size >= 300) {
-                    return;
-                }
                 size = size - (size * 0.1);
                 balloon.style.fontSize = `${size}px`;
+                console.log(balloon.style.fontSize);
             } else if (e.key == 'ArrowUp') {
                 if (size >= 300) {
                     balloon.textContent = '💥';
-                    return;
-                }
+                    console.log('pop');
+                    window.removeEventListener('keydown', changeSize);
+                } else {
                 size = size + (size * 0.1);
                 balloon.style.fontSize = `${size}px`;
+                console.log(balloon.style.fontSize);
+                }
             }
-        });
+        }
+
+        window.addEventListener('keydown', changeSize);
     </script>
 </body>
 </html>
