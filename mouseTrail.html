@@ -8,6 +8,7 @@
             height: 6px;
             width: 6px;
             border-radius: 3px;
+            background: teal;
         }
         body {
             height: 300px;
@@ -20,22 +21,53 @@
 <body>
     <h1>Move the mouse</h1>
     <script>
-        document.body.addEventListener('mousemove', e => {
-            let trailEl = document.createElement('div');
-            const backgroundColors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
-            trailEl.style.backgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
-            trailEl.className = 'trail';
-            trailEl.style.left = `${e.pageX - 4}px`;
-            trailEl.style.top = `${e.pageY - 4}px`;
-            document.body.appendChild(trailEl);
-        });
 
-        // window.addEventListener("click", event => {
-        //     let dot = document.createElement("div");
-        //     dot.className = "dot";
-        //     dot.style.left = (event.pageX - 4) + "px";
-        //     dot.style.top = (event.pageY - 4) + "px";
-        //     document.body.appendChild(dot);
+        let dots = [];
+        for (let i =0; i < 12; i++) {
+            let div = document.createElement('div');
+            div.className = 'trail';
+            document.body.appendChild(div);
+            dots.push(div);
+        }
+
+        let currentDot = 0;
+        const backgroundColors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+
+
+        window.addEventListener('mousemove', e => {
+            let dot = dots[currentDot];
+            dot.style.left = `${e.pageX - 3}px`;
+            dot.style.top = `${e.pageY - 3}px`;
+            dot.style.backgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
+            currentDot = (currentDot + 1) % dots.length;
+        });
+        // document.body.addEventListener('mousemove', e => {
+        //     let trailEl = document.createElement('div');
+        //     trailEl.style.backgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
+        //     trailEl.className = 'trail';
+        //     trailEl.style.left = `${e.pageX - 4}px`;
+        //     trailEl.style.top = `${e.pageY - 4}px`;
+        //     document.body.appendChild(trailEl);
+        // });
+
+
+
+
+
+        // let dots = [];
+        // for (let i = 0; i < 12; i++) {
+        //     let node = document.createElement("div");
+        //     node.className = "trail";
+        //     document.body.appendChild(node);
+        //     dots.push(node);
+        // }
+        // let currentDot = 0;
+        
+        // window.addEventListener("mousemove", event => {
+        //     let dot = dots[currentDot];
+        //     dot.style.left = (event.pageX - 3) + "px";
+        //     dot.style.top = (event.pageY - 3) + "px";
+        //     currentDot = (currentDot + 1) % dots.length;
         // });
     </script>
 </body>
