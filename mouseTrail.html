@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* className for the trail elements */
+        .trail {
+            position: absolute;
+            height: 6px;
+            width: 6px;
+            border-radius: 3px;
+        }
+        body {
+            height: 300px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Trail</title>
+</head>
+<body>
+    <h1>Move the mouse</h1>
+    <script>
+        document.body.addEventListener('mousemove', e => {
+            let trailEl = document.createElement('div');
+            const backgroundColors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+            trailEl.style.backgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
+            trailEl.className = 'trail';
+            trailEl.style.left = `${e.pageX - 4}px`;
+            trailEl.style.top = `${e.pageY - 4}px`;
+            document.body.appendChild(trailEl);
+        });
+
+        // window.addEventListener("click", event => {
+        //     let dot = document.createElement("div");
+        //     dot.className = "dot";
+        //     dot.style.left = (event.pageX - 4) + "px";
+        //     dot.style.top = (event.pageY - 4) + "px";
+        //     document.body.appendChild(dot);
+        // });
+    </script>
+</body>
+</html>
